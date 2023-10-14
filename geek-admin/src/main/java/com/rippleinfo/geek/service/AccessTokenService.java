@@ -14,7 +14,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
 import java.util.Objects;
 
 /**
@@ -23,7 +22,6 @@ import java.util.Objects;
 @Slf4j
 @Service
 public class AccessTokenService {
-    @Resource
     private Client auth2Client;
 
     @Value("${app.appKey}")
@@ -54,10 +52,10 @@ public class AccessTokenService {
             throw new RuntimeException("please set application.properties app.appSecret=xxx");
         }
 
-/*        com.aliyun.teaopenapi.models.Config config = new com.aliyun.teaopenapi.models.Config();
+        com.aliyun.teaopenapi.models.Config config = new com.aliyun.teaopenapi.models.Config();
         config.protocol = "https";
         config.regionId = "central";
-        auth2Client = new Client(config);*/
+        auth2Client = new Client(config);
 
         int maxTryTimes = 3;
         while (maxTryTimes-- > 0) {

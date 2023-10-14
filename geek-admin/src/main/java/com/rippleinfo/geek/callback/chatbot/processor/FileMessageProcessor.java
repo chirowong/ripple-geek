@@ -1,11 +1,7 @@
 package com.rippleinfo.geek.callback.chatbot.processor;
 
-import com.aliyun.dingtalkrobot_1_0.Client;
-import com.aliyun.dingtalkrobot_1_0.models.RobotMessageFileDownloadRequest;
-import com.aliyun.dingtalkrobot_1_0.models.RobotMessageFileDownloadResponse;
 import com.dingtalk.open.app.api.models.bot.ChatbotMessage;
-import com.dingtalk.open.app.api.models.bot.MessageContent;
-import com.rippleinfo.geek.service.RobotMessagesService;
+import com.rippleinfo.geek.service.RobotFileMessagesService;
 import com.rippleinfo.geek.util.spring.SpringUtils;
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,23 +9,16 @@ import lombok.extern.slf4j.Slf4j;
 public class FileMessageProcessor implements MessageProcessor {
 
     public void process(ChatbotMessage message) {
-        // 下载文件
-        MessageContent content = message.getContent();
-        String downloadCode = content.getDownloadCode();
 
-        Client robotClient = SpringUtils.getBean(Client.class);
-
-        RobotMessageFileDownloadRequest request = new RobotMessageFileDownloadRequest();
-        request.setDownloadCode(downloadCode);
-        RobotMessageFileDownloadResponse response = null;
         try {
-            response = robotClient.robotMessageFileDownload(request);
+            String downloadUrl = SpringUtils.getBean(RobotFileMessagesService.class).download(message.getContent());
+            String fileName = message.getContent().getFileName();
+            log.error(downloadUrl);
+            log.error(fileName);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
         // String conversationType = message.getConversationType();
-        log.error(response.toString());
-
         /*switch (conversationType) {
             case "1": // 单聊
                 if (text != null) {

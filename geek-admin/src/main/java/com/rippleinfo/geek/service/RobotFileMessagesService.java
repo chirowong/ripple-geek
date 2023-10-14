@@ -1,8 +1,9 @@
 package com.rippleinfo.geek.service;
 
-import com.alibaba.fastjson.JSONObject;
 import com.aliyun.dingtalkrobot_1_0.Client;
-import com.aliyun.dingtalkrobot_1_0.models.*;
+import com.aliyun.dingtalkrobot_1_0.models.RobotMessageFileDownloadHeaders;
+import com.aliyun.dingtalkrobot_1_0.models.RobotMessageFileDownloadRequest;
+import com.aliyun.dingtalkrobot_1_0.models.RobotMessageFileDownloadResponse;
 import com.aliyun.tea.TeaException;
 import com.dingtalk.open.app.api.models.bot.MessageContent;
 import lombok.extern.slf4j.Slf4j;
@@ -43,6 +44,7 @@ public class RobotFileMessagesService {
         String downloadCode = content.getDownloadCode();
         RobotMessageFileDownloadRequest request = new RobotMessageFileDownloadRequest();
         request.setDownloadCode(downloadCode);
+        request.setRobotCode(robotCode);
         try {
             RobotMessageFileDownloadResponse robotMessageFileDownloadResponse = robotClient.robotMessageFileDownloadWithOptions(request, robotMessageFileDownloadHeaders, new com.aliyun.teautil.models.RuntimeOptions());
             if (Objects.isNull(robotMessageFileDownloadResponse) || Objects.isNull(robotMessageFileDownloadResponse.getBody())) {

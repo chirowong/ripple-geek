@@ -47,7 +47,7 @@ public class RobotMessagesService {
         batchSendOTORequest.setMsgKey("sampleText");
         batchSendOTORequest.setRobotCode(robotCode);
         JSONObject msgParam = new JSONObject();
-        msgParam.put("content", "java-getting-start say : " + text);
+        msgParam.put("content", text);
         batchSendOTORequest.setMsgParam(msgParam.toJSONString());
         batchSendOTORequest.setUserIds(java.util.Arrays.asList(userId));
 
