@@ -46,6 +46,7 @@
         <aws-java-sdk-s3.version>1.12.400</aws-java-sdk-s3.version>
         <!-- SMS 配置 -->
         <sms4j.version>2.2.0</sms4j.version>
+        <dingtalk.sdk.version>1.1.0</dingtalk.sdk.version>
     </properties>
 
     <profiles>
