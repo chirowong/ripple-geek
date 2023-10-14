@@ -55,6 +55,10 @@ public class TextMessageProcessor implements MessageProcessor {
                 if (text != null) {
                     String msg = text.getContent();
                     log.info("receive bot message from user={}, msg={}", message.getSenderId(), msg);
+                    TestMessage testMessage = new TestMessage();
+                    testMessage.setRole("user");
+                    testMessage.setContent(msg);
+                    roleMessageMap.addMessage(message.getSenderId(),testMessage);
                     String openConversationId = message.getConversationId();
                     try {
                         RobotGroupMessagesService robotGroupMessagesService = SpringUtils.getBean(RobotGroupMessagesService.class);
