@@ -18,55 +18,6 @@ public class OpenAiUtil {
         Gson gson = new Gson();
         AiResponse aiResponse = gson.fromJson(responseBody,AiResponse.class);
         return aiResponse.getChoices().get(0).getMessage().getContent();
-        /*HttpClient httpClient = HttpClients.createDefault();
-
-        try {
-
-            // Create a POST request
-            HttpPost httpPost = new HttpPost(url);
-            // Create an instance of CompletionRequest and set its attributes
-            completionRequest.setModel("baichuan");
-            Messages messages = new Messages();
-            messages.setRole("user");
-            messages.setContent("你好");
-            List<Messages> messagesList = new ArrayList<>();
-            messagesList.add(messages);
-            completionRequest.setMessages(messagesList);
-            // Convert the CompletionRequest to a JSON string
-            String requestBody = convertCompletionRequestToJson(completionRequest);
-            System.out.println("requestBody "+requestBody);
-            // Set the request body as a StringEntity
-            StringEntity requestEntity = new StringEntity(requestBody);
-            httpPost.setEntity(requestEntity);
-            //HttpUtil
-
-
-            // Set the Content-Type header to specify that the request body is in JSON format
-            requestEntity.setContentType("application/json");
-
-            // Execute the POST request
-            HttpResponse response = httpClient.execute(httpPost);
-
-            // Process the response
-            int statusCode = response.getStatusLine().getStatusCode();
-            if (statusCode == 200) {
-                // Request was successful
-                HttpEntity responseEntity = response.getEntity();
-                String responseBody = EntityUtils.toString(responseEntity);
-                System.out.println("Response: " + responseBody);
-                Gson gson = new Gson();
-                AiResponse aiResponse = gson.fromJson(responseBody,AiResponse.class);
-                System.out.println("result: "+aiResponse.getChoices().get(0).getMessage().getContent());
-                return aiResponse.getChoices().get(0).getMessage().getContent();
-            } else {
-                // Request failed
-                System.err.println("HTTP POST request failed with status code: " + statusCode);
-                return "";
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "";
-        }*/
     }
 
     public static void main(String[] args) {
